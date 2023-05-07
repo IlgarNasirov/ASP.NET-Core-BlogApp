@@ -1,0 +1,21 @@
+﻿@model Client.DTOs.AddBlogDTO
+<div class="container">
+<form method="post">
+    <div class="form-group mt-4">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" type="text" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <label asp-for="Data"></label>
+        <textarea asp-for="Data" class="form-control" rows="15"></textarea>
+        <span asp-validation-for="Data" class="text-danger"></span>
+    </div>
+    <button class="btn btn-success mt-3">@ViewData["title"]</button>
+</form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,50 @@
+﻿@model Client.DTOs.RegisterUserDTO
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="/assets/blogger.png"/>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post">
+        <h3>Register</h3>
+        <label asp-for="FullName"></label>
+        <input type="text" placeholder="Enter your username" asp-for="FullName">
+        <span asp-validation-for="FullName" class="text-danger"></span>
+        <label asp-for="Username"></label>
+        <input type="text" placeholder="Enter your username" asp-for="Username">
+        <span asp-validation-for="Username" class="text-danger"></span>
+        <label asp-for="Password"></label>
+        <input type="password" placeholder="Enter your password" asp-for="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <label asp-for="RePassword"></label>
+        <input type="password" placeholder="Enter your username" asp-for="RePassword">
+        <span asp-validation-for="RePassword" class="text-danger"></span>
+        <button>Register</button>
+        <a class="btn" asp-asp-controller="User" asp-action="Login">Login</a>
+        @{
+            if (TempData["error"] != null)
+            {
+                <br />
+                <span class="message text-danger">@TempData["error"]</span>
+            }
+        }
+    </form>
+    <script src="/assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+</body>
+</html>

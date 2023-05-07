@@ -1,0 +1,50 @@
+﻿@model List<Client.DTOs.AllBlogsDTO>;
+@{
+    ViewData["title"] = "All blogs";
+}
+<div class="container">
+    @{
+        <p id="message" class="text-success mt-2">@TempData["success"]</p>
+        if (Model.Count > 0)
+        {
+            foreach(var item in Model)
+            {
+                <div class="card border-success mt-3">
+                    <a style="text-decoration: none;" asp-controller="Blog" asp-action="DetailsBlog" asp-route-id="@item.Id">
+                    <div class="card-header">Added by @item.Username</div>
+                    <div class="card-body">
+                        <h4 class="card-title">@item.Title</h4>
+                            @if (item.Data.Length < 200)
+                            {
+                                <p class="card-text">@item.Data</p>
+                            }
+                            else
+                            {
+                                <p class="card-text">@item.Data.Substring(0,200)... <a style="color: #0000EE;" asp-controller="Blog" asp-action="DetailsBlog" asp-route-id="@item.Id">More</a></p>
+                            }
+                            @if (item.IsYour == true)
+                            {
+                            <a class="btn btn-outline-warning" asp-controller="Blog" asp-action="UpdateBlog" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                            <form method="post" asp-controller="Blog" asp-action="DeleteBlog" style="display: inline-block;">
+                                <input type="hidden" value="@item.Id" name="id">
+                                <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                            }
+                    </div>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-dismissible alert-danger mt-3">
+                <strong>Oh snap! </strong>Nothing found!
+            </div>
+        }
+   }
+    <script>
+        setTimeout(() => {
+            document.getElementById("message").style.display = "none";
+        }, 5000);
+    </script>
+</div>

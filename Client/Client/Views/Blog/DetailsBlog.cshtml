@@ -1,0 +1,11 @@
+﻿@model Client.DTOs.DetailsBlogDTO
+@{
+    ViewData["title"]="Blog details";
+}
+<div class="container">
+<h1 class="mt-3">@Model.Title</h1>
+<h4>Published @Model.Date</h4>
+<h3>@Model.Username added</h3>
+<p>@Model.Data</p>
+<h4><i class="bi bi-eye"></i> @Model.Views</h4>
+</div>
